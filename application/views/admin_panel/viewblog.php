@@ -32,7 +32,7 @@
                       <td>".$value['blog_title']."</td>
                       <td>".$value['blog_data']."</td>
                       <td><img src='".base_url().$value['blog_img']."' class='img-fluid' width='100'></td>
-                      <td><a class=\"btn btn-info\" href='".base_url().'admin/blog/updateblog/1'."'>Update</a></td>
+                      <td><a class=\"btn btn-info\" href='".base_url().'admin/blog/updateblog/'.$value['blog_id']."'>Update</a></td>
                       <td><a class=\"btn delete btn-danger\" href='#.' data-id='".$value['blog_id']."'>Delete</a></td>
                     </tr>";
 

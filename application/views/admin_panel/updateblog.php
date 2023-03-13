@@ -1,4 +1,11 @@
 <?php
+  // echo "<pre>";
+  // print_r($result);
+  // die();
+
+?>
+
+<?php
   $this->load->view("admin_panel/header");
 
 ?>
@@ -9,16 +16,20 @@
           <br>
 
           <form enctype="multipart/form-data" action="<?= base_url().'admin/blog/updateblog_post' ?>" method="post">
+
+          <input type="hidden" name="blog_id" value="<?= $blog_id ?>">
           <div class="form-group">
-            <input type="text" class="form-control" name="blog_title" placeholder="Title">
+            <input type="text" value="<?= $result[0]['blog_title'] ?>" class="form-control" name="blog_title" placeholder="Title">
           </div>
 
           
           <div class="form-group">
-            <textarea type="text" class="form-control" name="desc" placeholder="Description"></textarea>
+            <textarea type="text" class="form-control" name="desc" placeholder="Description"><?= $result[0]['blog_data'] ?></textarea>
+            
           </div>
 
           <div class="form-group">
+            <img width= 200 src="<?= base_url().$result[0]['blog_img']?>">
             <input type="file" class="form-control" name="file" placeholder="File">
           </div>
 

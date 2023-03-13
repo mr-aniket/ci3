@@ -84,14 +84,50 @@ class Blog extends CI_Controller {
 	function updateblog($blog_id)
 	{
 		print_r("$blog_id");
-		$query = $this->load->db->query("SELECT `blog_title`, `blog_data`, `blog_img` FROM `blogs` WHERE `blog_id`='$blog_id'");
+		$query = $this->db->query("SELECT `blog_title`, `blog_data`, `blog_img` FROM `blogs` WHERE `blog_id`='$blog_id'");
 		$data['result'] = $query->result_array();
+		$data['blog_id'] = $blog_id;
+
 		$this->load->view('admin_panel/updateblog', $data);
 	}
 
 	function updateblog_post()
 	{
 		print_r($_POST);
+		print_r($_FILES);
+		if ($_FILES['file']['name'])
+		{
+			die("Updated with a File");
+			$config['upload_path']          = './assets/upload/blogimg';
+			$config['allowed_types']        = 'gif|jpg|png|jpeg';
+
+			$this->load->library('upload', $config);
+
+			if ( ! $this->upload->do_upload('file'))
+			{
+					$error = array('error' => $this->upload->display_errors());
+
+					die("Error");
+
+					// $this->load->view('upload_form', $error);
+			}
+			else
+			{
+					$data = array('upload_data' => $this->upload->data());
+					// echo "<pre>";
+					// print_r($data['upload_data']['file_name']);
+					$filename_location = "assets/upload/blogimg". $data['upload_data']['file_name'];
+
+					$blog_title = $_POST['blog_title'];
+					$data = $_POST['blog_data'];
+					$blog_id = $_POST['blog_id'];
+					$query = $this->db->query("UPDATE `blogs` SET `blog_title`='$blog_title',`blog_data`='$data',`blog_img`='$filename_location' WHERE `blog_id`='$blog_id'");
+			}
+		}
+		else
+		{
+			die("Updated without file");
+		}
 	}
 	function deleteblog()
 	{
