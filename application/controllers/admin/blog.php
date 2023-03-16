@@ -38,42 +38,42 @@ class Blog extends CI_Controller {
 		{
 			//Image found
 			$config['upload_path']          = './assets/upload/blogimg';
-                $config['allowed_types']        = 'gif|jpg|png|jpeg';
+			$config['allowed_types']        = 'gif|jpg|png|jpeg';
 
-                $this->load->library('upload', $config);
+			$this->load->library('upload', $config);
 
-                if ( ! $this->upload->do_upload('file'))
-                {
-                        $error = array('error' => $this->upload->display_errors());
+			if ( ! $this->upload->do_upload('file'))
+			{
+					$error = array('error' => $this->upload->display_errors());
 
-						die("Error");
+					die("Error");
 
-                        // $this->load->view('upload_form', $error);
-                }
-                else
-                {
-                        $data = array('upload_data' => $this->upload->data());
-						// echo "<pre>";
-						// print_r($data);
-						// echo $data['upload_data']['file_name'];
-						$file_url = "assets/upload/blogimg/".$data['upload_data']['file_name'];
-						$blog_title = $_POST['blog_title'];
-						$desc = $_POST['desc'];
+					// $this->load->view('upload_form', $error);
+			}
+			else
+			{
+					$data = array('upload_data' => $this->upload->data());
+					// echo "<pre>";
+					// print_r($data);
+					// echo $data['upload_data']['file_name'];
+					$file_url = "assets/upload/blogimg/".$data['upload_data']['file_name'];
+					$blog_title = $_POST['blog_title'];
+					$desc = $_POST['desc'];
 
-						$query = $this->db->query("INSERT INTO `blogs`(`blog_title`, `blog_data`, `blog_img`) VALUES ('$blog_title','$desc','$file_url')");
+					$query = $this->db->query("INSERT INTO `blogs`(`blog_title`, `blog_data`, `blog_img`) VALUES ('$blog_title','$desc','$file_url')");
 
-						if ($query)
-						{
-							$this->session->set_flashdata('inserted', 'yes');
-							redirect('admin/blog//addblog');
-						}
-						else
-						{
-							$this->session->set_flashdata('inserted', 'no');
-							redirect('admin/blog//addblog');
-						}
-                        //$this->load->view('upload_success', $data);
-                }
+					if ($query)
+					{
+						$this->session->set_flashdata('inserted', 'yes');
+						redirect('admin/blog/addblog');
+					}
+					else
+					{
+						$this->session->set_flashdata('inserted', 'no');
+						redirect('admin/blog/addblog');
+					}
+					//$this->load->view('upload_success', $data);
+			}
 		}
 		else
 		{
@@ -93,11 +93,11 @@ class Blog extends CI_Controller {
 
 	function updateblog_post()
 	{
-		print_r($_POST);
-		print_r($_FILES);
+		// print_r($_POST);
+		// print_r($_FILES);
 		if ($_FILES['file']['name'])
 		{
-			die("Updated with a File");
+			// die("Updated with a File");
 			$config['upload_path']          = './assets/upload/blogimg';
 			$config['allowed_types']        = 'gif|jpg|png|jpeg';
 
@@ -116,17 +116,42 @@ class Blog extends CI_Controller {
 					$data = array('upload_data' => $this->upload->data());
 					// echo "<pre>";
 					// print_r($data['upload_data']['file_name']);
-					$filename_location = "assets/upload/blogimg". $data['upload_data']['file_name'];
-
+					$filename_location = "assets/upload/blogimg/".$data['upload_data']['file_name'];
 					$blog_title = $_POST['blog_title'];
-					$data = $_POST['blog_data'];
+					$desc = $_POST['desc'];
 					$blog_id = $_POST['blog_id'];
-					$query = $this->db->query("UPDATE `blogs` SET `blog_title`='$blog_title',`blog_data`='$data',`blog_img`='$filename_location' WHERE `blog_id`='$blog_id'");
+					$query = $this->db->query("UPDATE `blogs` SET `blog_title`='$blog_title',`blog_data`='$desc',`blog_img`='$filename_location' WHERE `blog_id`=$blog_id");
+					if ($query)
+					{
+						$this->session->set_flashdata('updated', 'yes');
+						redirect("admin/blog");
+					}
+					else
+					{
+						$this->session->set_flashdata('updated', 'no');
+						redirect("admin/blog");
+					
+					}
 			}
 		}
 		else
 		{
-			die("Updated without file");
+			// die("Updated without file");
+			$blog_title = $_POST['blog_title'];
+			$desc = $_POST['desc'];
+			$blog_id = $_POST['blog_id'];
+			$query = $this->db->query("UPDATE `blogs` SET `blog_title`='$blog_title',`blog_data`='$desc' WHERE `blog_id`=$blog_id");
+			if ($query)
+			{
+				$this->session->set_flashdata('updated', 'yes');
+				redirect("admin/blog");
+			}
+			else
+			{
+				$this->session->set_flashdata('updated', 'no');
+				redirect("admin/blog");
+			
+			}
 		}
 	}
 	function deleteblog()
