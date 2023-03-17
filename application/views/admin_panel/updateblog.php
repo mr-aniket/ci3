@@ -16,9 +16,12 @@
           <br>
 
           <form enctype="multipart/form-data" action="<?= base_url().'admin/blog/updateblog_post' ?>" method="post">
-
+          <select class="custom-select" name="publish_unpublish">
+            <option value="1" <?= ($result[0]['status'] == "1" ? "selected": ""); ?>>Publish</option>
+            <option value="0" <?= ($result[0]['status'] == "0" ? "selected": ""); ?>>Unpublish</option>
+          </select>
           <input type="hidden" name="blog_id" value="<?= $blog_id ?>">
-          <div class="form-group">
+          <div class="form-group" style="margin-top: 15px;">
             <input type="text" value="<?= $result[0]['blog_title'] ?>" class="form-control" name="blog_title" placeholder="Title">
           </div>
 

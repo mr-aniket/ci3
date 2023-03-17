@@ -84,7 +84,7 @@ class Blog extends CI_Controller {
 	function updateblog($blog_id)
 	{
 		print_r("$blog_id");
-		$query = $this->db->query("SELECT `blog_title`, `blog_data`, `blog_img` FROM `blogs` WHERE `blog_id`='$blog_id'");
+		$query = $this->db->query("SELECT `blog_title`, `blog_data`, `blog_img`, `status` FROM `blogs` WHERE `blog_id`='$blog_id'");
 		$data['result'] = $query->result_array();
 		$data['blog_id'] = $blog_id;
 
@@ -94,6 +94,7 @@ class Blog extends CI_Controller {
 	function updateblog_post()
 	{
 		// print_r($_POST);
+		// die();
 		// print_r($_FILES);
 		if ($_FILES['file']['name'])
 		{
@@ -120,7 +121,8 @@ class Blog extends CI_Controller {
 					$blog_title = $_POST['blog_title'];
 					$desc = $_POST['desc'];
 					$blog_id = $_POST['blog_id'];
-					$query = $this->db->query("UPDATE `blogs` SET `blog_title`='$blog_title',`blog_data`='$desc',`blog_img`='$filename_location' WHERE `blog_id`=$blog_id");
+					$publish_unpublish = $_POST['publish_unpublish'];
+					$query = $this->db->query("UPDATE `blogs` SET `blog_title`='$blog_title',`blog_data`='$desc', `status` = '$publish_unpublish' ,`blog_img`='$filename_location' WHERE `blog_id`=$blog_id");
 					if ($query)
 					{
 						$this->session->set_flashdata('updated', 'yes');
@@ -139,8 +141,9 @@ class Blog extends CI_Controller {
 			// die("Updated without file");
 			$blog_title = $_POST['blog_title'];
 			$desc = $_POST['desc'];
+			$publish_unpublish = $_POST['publish_unpublish'];
 			$blog_id = $_POST['blog_id'];
-			$query = $this->db->query("UPDATE `blogs` SET `blog_title`='$blog_title',`blog_data`='$desc' WHERE `blog_id`=$blog_id");
+			$query = $this->db->query("UPDATE `blogs` SET `blog_title`='$blog_title',`blog_data`='$desc', `status` = '$publish_unpublish' WHERE `blog_id`=$blog_id");
 			if ($query)
 			{
 				$this->session->set_flashdata('updated', 'yes');
