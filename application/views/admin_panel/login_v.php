@@ -21,26 +21,35 @@
           echo '</div>';
         }
     ?>
+
     <form action="<?= base_url().'admin/login/login_post'?>" method="post" class="form-signin">
     <!-- <img class="mb-4" src="/application/images/user.png" alt="" width="100" height="57"> -->
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
     
+    <div class="text-center">
+      <a href="<?= base_url();?>assets/static/page/hidden_game.php"><img src="<?= base_url();?>assets/static/user.png" style="cursor: auto;" width=100px" alt=""></a>
+    </div>
+    
+    
+    <h1 class="h3 mb-3 fw-normal" style="text-align: center;">Please sign in</h1>
     <div class="form-floating">
       <input type="text" name="uname" class="form-control" id="floatingInput" placeholder="Username">
       <!-- <label for="floatingInput">Email address</label> -->
     </div>
+    <div class="mb-2"></div>
     <div class="form-floating">
       <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
       <!-- <label for="floatingPassword">Password</label> -->
     </div>
 
-    <div class="checkbox mb-3">
+    <div class="checkbox mb-3 text-center">
       <label>
         <input type="checkbox" value="remember-me"> Remember me
       </label>
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">© The Blogs 2017–2023</p>
+    <div style="">
+      <p class="mt-5 mb-3 text-muted text-center">© The Blogs 2017–2023</p>
+    </div>
   </form>
   <!-- Example single danger button -->
 

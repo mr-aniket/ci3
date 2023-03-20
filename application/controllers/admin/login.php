@@ -20,6 +20,7 @@ class Login extends CI_Controller {
 	 */
 	public function index()
 	{
+		$this->load->helper('url');
 		if (isset($_SESSION['user_id']))
 		{
 			redirect('admin/dashboard');
