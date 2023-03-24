@@ -15,7 +15,7 @@
 
           
           <div class="form-group">
-            <textarea type="text" class="form-control" name="desc" placeholder="Description"></textarea>
+            <textarea type="text" class="form-control ckeditor" id="editor1" name="desc" placeholder="Description"></textarea>
           </div>
 
           <div class="form-group">
@@ -50,4 +50,10 @@
         }
     }
     ?>
+</script>
+
+<!-- CKEDITOR CODE -->
+<script src="<?= base_url();?>assets/static/Editor/ckeditor.js" ></script>
+<script>
+  ClassicEditor.create(document.getElementById('editor1'));
 </script>
