@@ -34,7 +34,7 @@ class Blog extends CI_Controller {
         /*print_r($_POST);
 		print_r($_FILES);*/
 
-		if ($_FILES)
+		if ($_FILES['file']['name'])
 		{
 			//Image found
 			$config['upload_path']          = './assets/upload/blogimg';
@@ -78,6 +78,26 @@ class Blog extends CI_Controller {
 		else
 		{
 			//No image
+			$data = array('upload_data' => $this->upload->data());
+			// echo "<pre>";
+			// print_r($data);
+			// echo $data['upload_data']['file_name'];
+			// $file_url = "assets/upload/blogimg/".$data['upload_data']['file_name'];
+			$blog_title = $_POST['blog_title'];
+			$desc = $_POST['desc'];
+
+			$query = $this->db->query("INSERT INTO `blogs`(`blog_title`, `blog_data`) VALUES ('$blog_title','$desc')");
+
+			if ($query)
+			{
+				$this->session->set_flashdata('inserted', 'yes');
+				redirect('admin/blog/addblog');
+			}
+			else
+			{
+				$this->session->set_flashdata('inserted', 'no');
+				redirect('admin/blog/addblog');
+			}
 		}
     }
 

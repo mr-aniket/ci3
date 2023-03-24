@@ -56,4 +56,5 @@
 <script src="<?= base_url();?>assets/static/Editor/ckeditor.js" ></script>
 <script>
   ClassicEditor.create(document.getElementById('editor1'));
+  
 </script>

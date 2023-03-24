@@ -27,7 +27,7 @@
 
           
           <div class="form-group">
-            <textarea type="text" class="form-control" name="desc" placeholder="Description"><?= $result[0]['blog_data'] ?></textarea>
+            <textarea type="text" id="editor1" class="form-control ckeditor" name="desc" placeholder="Description"><?= $result[0]['blog_data'] ?></textarea>
             
           </div>
 
@@ -49,6 +49,12 @@
 <?php
     $this->load->view("admin_panel/footer");
 ?>
+
+
+  <script src="<?= base_url();?>assets/static/Editor/ckeditor.js" ></script>
+<script>
+  ClassicEditor.create(document.getElementById('editor1'));
+</script>
 
 <script type="text/javascript">
     <?php
