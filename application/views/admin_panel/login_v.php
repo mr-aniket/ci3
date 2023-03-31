@@ -8,13 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://getbootstrap.com/docs/4.3/examples/sign-in/signin.css">
     <title>Admin Login</title>
   </head>
   
   <body>
-  <div class="collapse bg-dark" id="navbarHeader">
+    <div>
+  <!-- <div class="collapse bg-dark" id="navbarHeader"> -->
         <div class="container">
           <div class="row">
             <div class="col-sm-8 col-md-7 py-4">
