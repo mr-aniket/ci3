@@ -78,7 +78,7 @@ class Blog extends CI_Controller {
 		else
 		{
 			//No image
-			$data = array('upload_data' => $this->upload->data());
+			
 			// echo "<pre>";
 			// print_r($data);
 			// echo $data['upload_data']['file_name'];

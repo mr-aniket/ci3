@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Index extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,20 +20,6 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->model('ListModel', 'lm');
-		$result = $this->lm->fetch_the_blogs();
-		// print_r($result); die();
-
-		$data['result'] = $result;
-		$this->load->view('blog_view', $data);
-	}
-
-	public function blog_dtl($blog_id=0)
-	{
-		// die($blog_id);
-		$this->load->model('ListModel', 'lm');
-		$result = $this->lm->fetch_blog_dtl($blog_id);
-		$data['result'] = $result;
-		$this->load->view("blog_dtl_view", $data);
+		$this->load->view('welcome_message');
 	}
 }
