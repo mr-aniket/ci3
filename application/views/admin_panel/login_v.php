@@ -12,7 +12,24 @@
     <link rel="stylesheet" href="https://getbootstrap.com/docs/4.3/examples/sign-in/signin.css">
     <title>Admin Login</title>
   </head>
+  
   <body>
+  <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">About</h4>
+              <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Others</h4>
+              <ul class="list-unstyled">
+              <li><a href="<?= base_url().'admin/login';?>" class="text-white">Admin Login</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     <?php
         if ($error != "NO_ERROR")
         {
